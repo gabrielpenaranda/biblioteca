@@ -16,14 +16,14 @@ class ListaLibros(ListView):
             return Libro.libros.listar_libros2(palabra_clave, f1, f2)
         else:
             return Libro.libros.listar_libros(palabra_clave)
-        
+
 
 class ListaLibros2(ListView):
     context_object_name = 'lista_libros'
-    template_name = 'libro/lista.html'
+    template_name = 'libro/lista2.html'
 
     def get_queryset(self):
-        return Libro.libros.listar_libros_categoria(6)
+        return Libro.libros.listar_libros_categoria(2)
 
 
 class LibroDetailView(DetailView):

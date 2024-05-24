@@ -21,5 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('applications.core.urls', namespace='core')),
     path('autor/', include('applications.autor.urls', namespace='autor')),
-    path('libro/', include('applications.libro.urls', namespace='libro'),)
+    path('libro/', include('applications.libro.urls', namespace='libro'),
+    path('lector/', include('applications.lector.urls', namespace='lector'),
+    )
 ]

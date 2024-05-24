@@ -1,21 +1,18 @@
 from django.db import models
 from applications.libro.models import Libro
 from .managers import PrestamoManager
+from applications.autor.models import Persona
 
 
-class Lector(models.Model):
-    nombre = models.CharField(max_length=50)
-    apellidos = models.CharField(max_length=50)
-    nacionalidad = models.CharField(max_length=30)
-    edad = models.PositiveIntegerField()
+class Lector(Persona):
 
     class Meta:
         verbose_name = 'Lector'
         verbose_name_plural = 'Lectores'
 
     def __str__(self):
-        return f'{self.nombre} {self.apellidos}'
-    
+        return f'{self.nombres} {self.apellidos}'
+
 
 class Prestamo(models.Model):
     lector = models.ForeignKey(Lector, on_delete=models.CASCADE)
@@ -23,7 +20,7 @@ class Prestamo(models.Model):
     fecha_prestamo = models.DateField(auto_now=False, auto_now_add=False)
     fecha_devolucion = models.DateField(auto_now=False, auto_now_add=False, blank=True, null=True)
     devuelto = models.BooleanField()
-    prestamos = PrestamoManager()
+    objects = PrestamoManager()
 
     def __str__(self):
-        return self.libro.titulo
+        return self.libro.titulo + ' ' + self.lector.nombre + ' ' +  self.lector.apellidos + ' ' +  str(self.lector.edad)

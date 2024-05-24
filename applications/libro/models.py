@@ -9,7 +9,7 @@ class Categoria(models.Model):
 
     def __str__(self):
         return str(self.id) + ' - ' + self.categoria
-    
+
 
 class Libro(models.Model):
     categoria = models.ForeignKey(
@@ -22,11 +22,12 @@ class Libro(models.Model):
     fecha = models.DateField('Fecha de lanzamiento')
     portada = models.ImageField(upload_to='portada', null=True, blank=True)
     visitas = models.PositiveIntegerField()
-    libros = LibroManager()
+    objects = LibroManager()
 
     class Meta:
         verbose_name = 'Libro'
         verbose_name_plural = 'Libros'
+        ordering = ['titulo', 'fecha']
 
     def __str__(self):
         return f'{self.id}-{self.titulo}'

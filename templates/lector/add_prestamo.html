@@ -1,0 +1,14 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Prestamos {% endblock title%}
+
+
+{% block content %}
+<h1>Registrar Préstamo</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p() }}
+    <button type="submit">Guardar</button>
+</form>
+
+{% endblock content %}
